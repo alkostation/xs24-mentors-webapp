@@ -1,0 +1,4 @@
+flask~=3.1.0
+pymisp~=2.5.2
+MarkupSafe~=3.0.2
+python-dotenv

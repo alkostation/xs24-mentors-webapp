@@ -1,0 +1,10 @@
+<h2>Events</h2>
+    <ul>
+        {% for event in events %}
+        <li>
+            <p><a href="{{ misp_url }}events/view/{{ event.Event.id }}" target="_blank"><strong>Info:</strong> {{ event.Event.info }} <strong>Date:</strong> {{ event.Event.date }}</a></p>
+        </li>
+        {% else %}
+        <p>No events available.</p>
+        {% endfor %}
+    </ul>
