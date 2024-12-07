@@ -33,6 +33,19 @@ def hello_world():
     # Get all the events from the Default org
     events = misp.search()
 
+    # professional yt org "Default"
+    professional_yt_events = [
+        event for event in events
+        if event['Event']['Org']['name'] == global_context["org_professional_yt"] or
+           event['Event']['Orgc']['name'] == global_context["org_professional_yt"]
+    ]
+
+    mentor_team_events = [
+        event for event in events
+        if event['Event']['Org']['name'] == "Default" or
+           event['Event']['Orgc']['name'] == "Default"
+    ]
+
     # events_page = '<h1>Events</h1>'
     #
     # events_page += '<li>'
@@ -47,9 +60,13 @@ def hello_world():
     #
     # events_page += '</li>'
 
-    events_html = render_template("misp_events.html.jinja2", {**global_context, "events": events})
+    professional_team_events_html = render_template("misp_events.html.jinja2", {**global_context, "events": professional_yt_events})
+    mentor_team_events_html = render_template("misp_events.html.jinja2", {**global_context, "events": mentor_team_events})
 
-    return render_template("page.html.jinja2", {**global_context, "events_html": events_html})
+    return render_template("page.html.jinja2",
+                           {**global_context,
+                            "events_html": professional_team_events_html,
+                            "mentor_team_events_html": mentor_team_events_html})
 
 
 if __name__ == '__main__':
